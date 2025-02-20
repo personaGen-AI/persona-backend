@@ -55,7 +55,7 @@ const ChatBotSchema = new Schema(
             ref: 'KnowledgeBase'
         },
         integration:{
-            whatsapp:{
+            slack:{
                 type: Boolean,
                 default: false,
             },
@@ -63,10 +63,14 @@ const ChatBotSchema = new Schema(
                 type: Boolean,
                 default: false
             },
-            slack:{
+            whatsapp:{
                 type: Boolean,
                 default: false,
-            }
+            },
+            telegram:{
+                type: Boolean,
+                default: false
+            },
         },
         analytics:{
             totalInteractions:{
