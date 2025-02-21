@@ -1,6 +1,10 @@
 import express, { urlencoded } from "express";
+import dotenv from "dotenv";
 import cors from "cors";
 import cookieParser from "cookie-parser";
+import authRoutes from "./routes/auth.routes.js";
+
+dotenv.config();
 
 const app = express();
 
@@ -10,17 +14,19 @@ app.use(
     credentials: true,
   })
 );
+app.use(express.json());
+
+app.use(urlencoded(
+{ extended: true, 
+    limit: "20kb",
+}));
+app.use(express.static("public"));
+app.use(cookieParser());
 
 app.get('/', (req, res) => {
-  res.send('Hello World')
+  res.send('Persona-Digital version of You !!');
 })
+app.use("/api/v1/auth", authRoutes)
 
-app.use(express.json({ limit: "20kb" }));
-
-app.use(urlencoded({ extended: true, limit: "20kb" }));
-
-app.use(express.static("public"));
-
-app.use(cookieParser());
 
 export { app };

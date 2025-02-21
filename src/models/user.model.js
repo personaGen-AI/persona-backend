@@ -30,6 +30,9 @@ const UserSchema = new Schema(
         type: String,
         required: true
     },
+    coverImage:{
+        type: String,
+    },
     bio:{
         type: String,
         default: "Hey, I'm using Persona AI"
@@ -52,12 +55,12 @@ const UserSchema = new Schema(
     role:{
         type: String,
         enum: ['user', 'admin'],
-        default: user,
+        default: 'user',
     },
     subscriptionStatus:{
         type: String,
-        enum: ['free', 'gold', 'platinum', 'diamond'],
-        default: free,
+        enum: ['free', 'basic', 'standard', 'premium'],
+        default: 'free',
     },
     chatBots: [
         {
